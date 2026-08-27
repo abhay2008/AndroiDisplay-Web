@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AndroiDisplay for Mac — Zero Lag 120Hz 10-Bit Extended Workspace</title>
+  <meta name="description" content="Turn any Android tablet or phone into a 120Hz, 10-bit HEVC, ultra-low latency second screen for your Mac. 100% free, zero subscriptions.">
+  <meta name="theme-color" content="#0a0a0f">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="AndroiDisplay for Mac — Zero Lag 120Hz Extended Workspace">
+  <meta property="og:description" content="100% Free & Open Source 120 FPS display bridge for macOS Apple Silicon to Android.">
+  <meta property="og:type" content="website">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body class="bg-[#07070b] text-[#e2e8f0] font-sans antialiased selection:bg-cyan-500 selection:text-black overflow-x-hidden">
+
+  <!-- Background Ambient Glows -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div class="absolute -top-[20%] -left-[10%] w-[600px] h-[600px] rounded-full bg-cyan-500/10 blur-[130px] hero-orb"></div>
+    <div class="absolute top-[30%] -right-[15%] w-[700px] h-[700px] rounded-full bg-indigo-600/10 blur-[150px] hero-orb-2"></div>
+    <div class="absolute bottom-[10%] left-[20%] w-[500px] h-[500px] rounded-full bg-emerald-500/10 blur-[120px] hero-orb-3"></div>
+    <div class="ambient-grid"></div>
+  </div>
+
+  <!-- Sticky Navbar -->
+  <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-[#07070b]/80 border-b border-white/5 transition-all duration-300" id="navbar">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform duration-300">
+          <i data-lucide="monitor" class="w-5 h-5 text-white"></i>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold text-base tracking-tight text-white flex items-center gap-1.5">
+            AndroiDisplay
+            <span class="px-1.5 py-0.5 text-[10px] font-semibold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 rounded-full">v1.0</span>
+          </span>
+          <span class="text-[11px] text-slate-400 -mt-1 hidden sm:block">Zero-Lag Mac Extended Workspace</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <a href="#features" class="hover:text-cyan-400 transition-colors">Features</a>
+        <a href="#architecture" class="hover:text-cyan-400 transition-colors">Architecture</a>
+        <a href="#comparison" class="hover:text-cyan-400 transition-colors">Comparison</a>
+        <a href="#simulator" class="hover:text-cyan-400 transition-colors">Interactive Demo</a>
+        <a href="#install" class="hover:text-cyan-400 transition-colors">Install</a>
+        <a href="https://github.com/abhay2008/AndroiDisplay/blob/main/docs/USAGE_GUIDE.md" target="_blank" class="hover:text-cyan-400 transition-colors flex items-center gap-1">
+          Guide <i data-lucide="external-link" class="w-3.5 h-3.5 text-slate-500"></i>
+        </a>
+      </nav>
+
+      <!-- CTA Buttons -->
+      <div class="flex items-center gap-3">
+        <a href="https://github.com/abhay2008/AndroiDisplay" target="_blank" class="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold bg-white/5 hover:bg-white/10 text-white border border-white/10 transition-all duration-300 hover:border-white/20 shadow-sm">
+          <i data-lucide="github" class="w-4 h-4"></i>
+          <span>GitHub</span>
+        </a>
+        <a href="#install" class="hidden sm:flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white shadow-lg shadow-cyan-500/25 transition-all duration-300 hover:scale-105 active:scale-95">
+          <i data-lucide="download" class="w-4 h-4"></i>
+          <span>Get Started</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative z-10 pt-32 pb-20 md:pt-40 md:pb-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <!-- Top Pill Badge -->
+    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-xs font-semibold mb-8 animate-fade-in">
+      <span class="flex h-2 w-2 rounded-full bg-cyan-400 animate-ping"></span>
+      <span>100% Free & Open Source — Zero Subscriptions</span>
+    </div>
+
+    <!-- Main Hero Heading -->
+    <h1 class="hero-title text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white max-w-4xl mx-auto leading-[1.1] mb-6">
+      Turn Any Android Tablet into a <span class="bg-gradient-to-r from-cyan-400 via-teal-300 to-indigo-400 bg-clip-text text-transparent">120Hz OLED Display</span> for Mac.
+    </h1>
+
+    <!-- Subtitle -->
+    <p class="hero-subtitle text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed font-normal">
+      Unlock Apple Silicon's hardware Media Engine (<code class="text-cyan-300 text-sm font-mono px-1.5 py-0.5 rounded bg-white/5">hevc_videotoolbox</code>) to stream 10-bit color, true pixel-off blacks, and single-digit millisecond latency to any Android screen.
+    </p>
+
+    <!-- Hero Action Buttons -->
+    <div class="hero-cta flex flex-wrap items-center justify-center gap-4 mb-12">
+      <a href="#install" class="flex items-center gap-2.5 px-6 py-3.5 rounded-xl font-semibold text-sm bg-gradient-to-r from-cyan-500 via-teal-500 to-indigo-600 text-white shadow-xl shadow-cyan-500/20 hover:shadow-cyan-500/40 hover:scale-105 active:scale-95 transition-all duration-300">
+        <i data-lucide="terminal" class="w-4 h-4"></i>
+        <span>Install in 1-Click</span>
+      </a>
+      <a href="https://github.com/abhay2008/AndroiDisplay/blob/main/docs/USAGE_GUIDE.md" target="_blank" class="flex items-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-sm bg-white/5 hover:bg-white/10 text-white border border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105">
+        <i data-lucide="book-open" class="w-4 h-4 text-cyan-400"></i>
+        <span>Read User Guide</span>
+      </a>
+    </div>
+
+    <!-- Quick Copy Install Banner -->
+    <div class="hero-code max-w-xl mx-auto p-1 rounded-2xl bg-gradient-to-r from-white/10 via-cyan-500/20 to-indigo-500/20 shadow-2xl backdrop-blur-md mb-16">
+      <div class="flex items-center justify-between px-4 py-3 bg-[#0c0c14] rounded-xl border border-white/5 font-mono text-xs sm:text-sm text-slate-300">
+        <div class="flex items-center gap-3 overflow-x-auto text-left">
+          <span class="text-cyan-400 font-bold select-none">$</span>
+          <span class="text-slate-200 truncate select-all" id="installCmd">git clone https://github.com/abhay2008/AndroiDisplay.git && cd AndroiDisplay && ./install.sh</span>
+        </div>
+        <button id="copyBtn" class="ml-3 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-cyan-500 hover:text-black font-sans font-semibold text-xs transition-all duration-200 flex items-center gap-1.5 shrink-0 text-white" title="Copy command">
+          <i data-lucide="copy" class="w-3.5 h-3.5" id="copyIcon"></i>
+          <span id="copyText">Copy</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Interactive Interactive Dual Display Stage -->
+    <div class="hero-stage relative max-w-5xl mx-auto pt-6">
+      <!-- Resolution Controls for Live Demo -->
+      <div class="flex items-center justify-center gap-2 mb-6">
+        <span class="text-xs font-semibold text-slate-400 mr-2 flex items-center gap-1.5">
+          <i data-lucide="sliders" class="w-3.5 h-3.5 text-cyan-400"></i> Live Tablet Canvas Scaling:
+        </span>
+        <button class="res-btn active px-3 py-1.5 rounded-lg text-xs font-semibold bg-cyan-500 text-black shadow-md transition-all duration-200" data-res="1440x900" data-scale="1.0">
+          1440 × 900 (Large UI)
+        </button>
+        <button class="res-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/5 hover:bg-white/10 text-slate-300 transition-all duration-200" data-res="1680x1050" data-scale="0.88">
+          1680 × 1050 (Balanced)
+        </button>
+        <button class="res-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/5 hover:bg-white/10 text-slate-300 transition-all duration-200" data-res="1920x1200" data-scale="0.75">
+          1920 × 1200 (Dense)
+        </button>
+      </div>
+
+      <!-- Live Mockup Workspace -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center bg-[#0d0d16]/80 p-6 md:p-8 rounded-3xl border border-white/10 shadow-2xl backdrop-blur-xl relative overflow-hidden">
+        <!-- Connecting USB Cable Glow Line -->
+        <div class="absolute inset-0 pointer-events-none opacity-40">
+          <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <path id="cablePath" d="M 300,200 Q 500,100 700,200" fill="none" stroke="url(#cyanGrad)" stroke-width="2" stroke-dasharray="6,6"/>
+            <defs>
+              <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#06b6d4"/>
+                <stop offset="100%" stop-color="#6366f1"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+
+        <!-- Left: Android Tablet Screen (Interactive Canvas) -->
+        <div class="lg:col-span-6 relative group">
+          <div class="tablet-frame relative rounded-2xl bg-[#020204] p-3 border-2 border-slate-700/80 shadow-2xl shadow-cyan-500/10">
+            <!-- Tablet Camera / Notch Dot -->
+            <div class="absolute top-1/2 left-2 w-1.5 h-1.5 rounded-full bg-slate-800 -translate-y-1/2"></div>
+            
+            <!-- Live Screen Surface -->
+            <div class="screen-surface rounded-xl bg-[#000000] border border-white/5 overflow-hidden aspect-[16/10] p-4 flex flex-col justify-between relative">
+              <!-- True Black Badge -->
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] font-bold flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> 120 FPS LOCKED
+                </span>
+                <span class="text-[10px] font-mono text-slate-400 bg-white/5 px-2 py-0.5 rounded" id="liveResLabel">1440 × 900 HiDPI</span>
+              </div>
+
+              <!-- Simulated IDE / Code Workspace on Tablet -->
+              <div class="my-auto transition-transform duration-300 origin-top-left" id="tabletContent">
+                <div class="flex items-center gap-2 mb-2 pb-1 border-b border-white/5 text-[11px] text-slate-400 font-mono">
+                  <i data-lucide="file-code" class="w-3.5 h-3.5 text-cyan-400"></i>
+                  <span>DisplayEngine.swift</span>
+                  <span class="text-emerald-400 ml-auto">10-Bit HEVC</span>
+                </div>
+                <div class="font-mono text-left text-[11px] space-y-1 text-slate-300">
+                  <p><span class="text-purple-400">func</span> <span class="text-blue-400">stream120Hz</span>() <span class="text-purple-400">async</span> {</p>
+                  <p class="pl-3"><span class="text-slate-400">// Apple Silicon VideoToolbox</span></p>
+                  <p class="pl-3"><span class="text-cyan-400">encoder</span> = .hevc_videotoolbox</p>
+                  <p class="pl-3"><span class="text-cyan-400">latency</span> = <span class="text-emerald-400">&lt;5.0ms</span></p>
+                  <p class="pl-3"><span class="text-cyan-400">oledRange</span> = .fullJpeg_0_255</p>
+                  <p>}</p>
+                </div>
+              </div>
+
+              <!-- Bottom Hardware Specs Bar -->
+              <div class="flex items-center justify-between pt-2 border-t border-white/5 text-[10px] text-slate-400 font-medium">
+                <span>📱 Android AMOLED Tablet</span>
+                <span class="text-cyan-400 font-mono">USB-C ADB Reverse</span>
+              </div>
+            </div>
+          </div>
+          <div class="mt-2 text-xs font-semibold text-slate-400">Secondary Extended Screen (No letterboxing)</div>
+        </div>
+
+        <!-- Right: Mac Host & Native Menu Bar Controller -->
+        <div class="lg:col-span-6 relative">
+          <div class="mac-frame relative rounded-2xl bg-[#12121e] p-4 border border-white/10 shadow-2xl text-left">
+            <!-- macOS Window Controls -->
+            <div class="flex items-center justify-between mb-4 pb-3 border-b border-white/10">
+              <div class="flex items-center gap-1.5">
+                <span class="w-3 h-3 rounded-full bg-rose-500/80"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-500/80"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
+              </div>
+              <span class="text-xs font-medium text-slate-400">AndroiDisplay Status Menu</span>
+              <div class="w-12"></div>
+            </div>
+
+            <!-- Simulated Menu Bar Dropdown -->
+            <div class="space-y-2 text-xs">
+              <div class="p-2.5 rounded-xl bg-white/5 border border-white/5 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                  <span class="font-semibold text-white">Status: Streaming (1440×900 @ 120Hz)</span>
+                </div>
+                <span class="text-[10px] font-mono text-cyan-400">Active</span>
+              </div>
+
+              <div class="p-2.5 rounded-xl bg-white/5 flex items-center justify-between text-slate-300">
+                <span class="flex items-center gap-2"><i data-lucide="tablet" class="w-3.5 h-3.5 text-cyan-400"></i> Tablet: Connected (USB 3.2)</span>
+                <span class="text-[10px] text-emerald-400">ADB Reversed</span>
+              </div>
+
+              <div class="pt-2 border-t border-white/5 space-y-1.5 font-medium">
+                <div class="flex items-center justify-between p-2 rounded-lg bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">
+                  <span class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5"></i> Extend to Tablet (1440×900 HiDPI)</span>
+                  <span class="text-[10px] font-mono">e2t</span>
+                </div>
+                <div class="flex items-center justify-between p-2 rounded-lg hover:bg-white/5 text-slate-300">
+                  <span class="flex items-center gap-2"><i data-lucide="copy" class="w-3.5 h-3.5 text-slate-500"></i> Mirror Main Screen</span>
+                  <span class="text-[10px] font-mono">m2t</span>
+                </div>
+                <div class="flex items-center justify-between p-2 rounded-lg hover:bg-white/5 text-rose-300">
+                  <span class="flex items-center gap-2"><i data-lucide="square" class="w-3.5 h-3.5 text-rose-400"></i> Stop Stream (Retain Windows)</span>
+                  <span class="text-[10px] font-mono">t2stop</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-2 text-xs font-semibold text-slate-400">Primary Mac Workstation Controller</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Performance Highlights Metrics Grid -->
+  <section class="py-12 border-y border-white/5 bg-white/[0.01]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div class="stat-card p-6 rounded-2xl bg-[#0b0b12] border border-white/5">
+          <div class="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-300 mb-1">120 FPS</div>
+          <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Hardware Cadence</div>
+        </div>
+        <div class="stat-card p-6 rounded-2xl bg-[#0b0b12] border border-white/5">
+          <div class="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-300 mb-1">&lt; 5.0 ms</div>
+          <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Wired USB-C Latency</div>
+        </div>
+        <div class="stat-card p-6 rounded-2xl bg-[#0b0b12] border border-white/5">
+          <div class="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-300 mb-1">10-Bit</div>
+          <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider">HEVC Dynamic Range</div>
+        </div>
+        <div class="stat-card p-6 rounded-2xl bg-[#0b0b12] border border-white/5">
+          <div class="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-rose-300 mb-1">$0 / yr</div>
+          <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Zero Subscription</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature Bento Grid -->
+  <section id="features" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="text-xs font-bold text-cyan-400 uppercase tracking-widest mb-3">Engineered for Performance</h2>
+      <p class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Everything You Need for a Seamless Dual-Screen Setup</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Card 1: 120 FPS Fluidity -->
+      <div class="bento-card p-8 rounded-3xl bg-[#0c0c14] border border-white/10 hover:border-cyan-500/40 transition-all duration-300 group flex flex-col justify-between">
+        <div>
+          <div class="w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center mb-6 text-cyan-400 group-hover:scale-110 transition-transform">
+            <i data-lucide="zap" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2">Locked 120 FPS Fluidity</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Eliminate the frustrating 30–60 FPS stutters found in proprietary solutions. Cursor movement and scrolling feel as responsive as your main display.
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-white/5 text-xs text-cyan-400 font-mono">Apple VideoToolbox Encode</div>
+      </div>
+
+      <!-- Card 2: Pure OLED Blacks -->
+      <div class="bento-card p-8 rounded-3xl bg-[#0c0c14] border border-white/10 hover:border-indigo-500/40 transition-all duration-300 group flex flex-col justify-between">
+        <div>
+          <div class="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mb-6 text-indigo-400 group-hover:scale-110 transition-transform">
+            <i data-lucide="sun-medium" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2">Pure OLED `#000000` Blacks</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Forced Full Range JPEG (0–255) and Rec. 709 10-bit HEVC encoding prevents elevated dark greys and powers off AMOLED pixels completely.
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-white/5 text-xs text-indigo-400 font-mono">color_range = 1 (Full Range)</div>
+      </div>
+
+      <!-- Card 3: Window Persistence -->
+      <div class="bento-card p-8 rounded-3xl bg-[#0c0c14] border border-white/10 hover:border-emerald-500/40 transition-all duration-300 group flex flex-col justify-between">
+        <div>
+          <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-6 text-emerald-400 group-hover:scale-110 transition-transform">
+            <i data-lucide="layout" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2">Zero Window Scatter</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Stopping or pausing the stream preserves the virtual DeskPad canvas in the background so your IDEs and workspaces never collapse.
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-white/5 text-xs text-emerald-400 font-mono">Headless Canvas Architecture</div>
+      </div>
+
+      <!-- Card 4: Sub-5ms ADB Reverse Tethering -->
+      <div class="bento-card p-8 rounded-3xl bg-[#0c0c14] border border-white/10 hover:border-amber-500/40 transition-all duration-300 group flex flex-col justify-between md:col-span-2">
+        <div class="grid md:grid-cols-2 gap-6 items-center">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mb-6 text-amber-400 group-hover:scale-110 transition-transform">
+              <i data-lucide="cable" class="w-6 h-6"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Sub-5ms USB-C ADB Reverse Tethering</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">
+              Automated reverse port mapping (<code class="text-xs font-mono text-amber-300">47984, 47989, 47990, 48010</code>) over USB-C bypasses congested Wi-Fi channels for reliable wired performance.
+            </p>
+          </div>
+          <div class="p-4 rounded-2xl bg-[#07070c] border border-white/5 font-mono text-xs text-slate-300 space-y-1">
+            <p class="text-cyan-400">$ adb reverse tcp:47984 tcp:47984</p>
+            <p class="text-slate-400">✓ RTSP Handshake: Ready</p>
+            <p class="text-slate-400">✓ Video Stream: 100 Mbps</p>
+            <p class="text-emerald-400">✓ Roundtrip Jitter: 0.2ms</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5: Dual Interface -->
+      <div class="bento-card p-8 rounded-3xl bg-[#0c0c14] border border-white/10 hover:border-purple-500/40 transition-all duration-300 group flex flex-col justify-between">
+        <div>
+          <div class="w-12 h-12 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mb-6 text-purple-400 group-hover:scale-110 transition-transform">
+            <i data-lucide="sliders-horizontal" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-2">Native Status Item & CLI Suite</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Control everything with a single click in your top Menu Bar, or run fast keyboard shortcuts (<code class="text-xs font-mono text-purple-300">e2t, m2t, t2stop</code>) in your terminal.
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-white/5 text-xs text-purple-400 font-mono">SwiftUI MenuBarExtra + Zsh CLI</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Comparison Table -->
+  <section id="comparison" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="text-xs font-bold text-cyan-400 uppercase tracking-widest mb-3">Honest Comparison</h2>
+      <p class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">How AndroiDisplay Stacks Up</p>
+    </div>
+
+    <div class="overflow-x-auto rounded-3xl border border-white/10 bg-[#0c0c14]/80 shadow-2xl backdrop-blur-md">
+      <table class="w-full text-left border-collapse text-sm">
+        <thead>
+          <tr class="border-b border-white/10 bg-white/[0.02]">
+            <th class="p-5 font-bold text-white">Feature</th>
+            <th class="p-5 font-bold text-cyan-400 bg-cyan-500/10 border-x border-cyan-500/20">AndroiDisplay</th>
+            <th class="p-5 font-semibold text-slate-400">Duet Display</th>
+            <th class="p-5 font-semibold text-slate-400">Apple Sidecar</th>
+            <th class="p-5 font-semibold text-slate-400">Luna Display</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-white/5 text-slate-300">
+          <tr>
+            <td class="p-5 font-medium text-white">Price</td>
+            <td class="p-5 font-bold text-emerald-400 bg-cyan-500/5 border-x border-cyan-500/20">100% Free / Open Source</td>
+            <td class="p-5 text-slate-400">$15–$50 / Year</td>
+            <td class="p-5 text-slate-400">Free (Apple Only)</td>
+            <td class="p-5 text-slate-400">$80 Hardware Dongle</td>
+          </tr>
+          <tr>
+            <td class="p-5 font-medium text-white">Max Refresh Rate</td>
+            <td class="p-5 font-bold text-emerald-400 bg-cyan-500/5 border-x border-cyan-500/20">🚀 120 FPS Locked</td>
+            <td class="p-5 text-slate-400">60 FPS (often drops)</td>
+            <td class="p-5 text-slate-400">60 FPS</td>
+            <td class="p-5 text-slate-400">30–60 FPS</td>
+          </tr>
+          <tr>
+            <td class="p-5 font-medium text-white">Wired Latency</td>
+            <td class="p-5 font-bold text-emerald-400 bg-cyan-500/5 border-x border-cyan-500/20">⚡ &lt; 5.0 ms</td>
+            <td class="p-5 text-slate-400">25–45 ms</td>
+            <td class="p-5 text-slate-400">~15 ms</td>
+            <td class="p-5 text-slate-400">20–35 ms</td>
+          </tr>
+          <tr>
+            <td class="p-5 font-medium text-white">Android Support</td>
+            <td class="p-5 font-bold text-emerald-400 bg-cyan-500/5 border-x border-cyan-500/20">✅ Any Android Device</td>
+            <td class="p-5 text-slate-400">⚠️ Limited</td>
+            <td class="p-5 text-rose-400">❌ iPad Only</td>
+            <td class="p-5 text-rose-400">❌ iPad / Mac Only</td>
+          </tr>
+          <tr>
+            <td class="p-5 font-medium text-white">OLED True Blacks</td>
+            <td class="p-5 font-bold text-emerald-400 bg-cyan-500/5 border-x border-cyan-500/20">✅ Full Range [0–255]</td>
+            <td class="p-5 text-slate-400">❌ Washed Grey</td>
+            <td class="p-5 text-slate-400">⚠️ Scaled</td>
+            <td class="p-5 text-slate-400">❌ Washed Grey</td>
+          </tr>
+          <tr>
+            <td class="p-5 font-medium text-white">Window Persistence</td>
+            <td class="p-5 font-bold text-emerald-400 bg-cyan-500/5 border-x border-cyan-500/20">✅ Retains Canvas on Stop</td>
+            <td class="p-5 text-rose-400">❌ Collapses on Exit</td>
+            <td class="p-5 text-rose-400">❌ Collapses on Exit</td>
+            <td class="p-5 text-rose-400">❌ Collapses on Exit</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Interactive Terminal Simulator -->
+  <section id="simulator" class="py-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-xs font-bold text-cyan-400 uppercase tracking-widest mb-3">Interactive Terminal Experience</h2>
+      <p class="text-3xl font-extrabold text-white tracking-tight">Try the CLI Suite in Real Time</p>
+    </div>
+
+    <div class="rounded-3xl bg-[#090910] border border-white/10 shadow-2xl overflow-hidden text-left">
+      <!-- Terminal Header -->
+      <div class="flex items-center justify-between px-6 py-4 bg-[#10101a] border-b border-white/5">
+        <div class="flex items-center gap-2">
+          <span class="w-3 h-3 rounded-full bg-rose-500"></span>
+          <span class="w-3 h-3 rounded-full bg-amber-500"></span>
+          <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+          <span class="text-xs font-mono text-slate-400 ml-2">user@macbook-pro ~ %</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button class="sim-btn px-2.5 py-1 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 text-xs font-mono hover:bg-cyan-500 hover:text-black transition-colors" data-cmd="e2t -r 1440">e2t -r 1440</button>
+          <button class="sim-btn px-2.5 py-1 rounded bg-white/5 text-slate-300 border border-white/10 text-xs font-mono hover:bg-white/10 transition-colors" data-cmd="m2t">m2t</button>
+          <button class="sim-btn px-2.5 py-1 rounded bg-white/5 text-slate-300 border border-white/10 text-xs font-mono hover:bg-white/10 transition-colors" data-cmd="t2stop">t2stop</button>
+          <button class="sim-btn px-2.5 py-1 rounded bg-white/5 text-slate-300 border border-white/10 text-xs font-mono hover:bg-white/10 transition-colors" data-cmd="tab-ctl status">tab-ctl status</button>
+        </div>
+      </div>
+
+      <!-- Terminal Output Body -->
+      <div class="p-6 font-mono text-xs sm:text-sm text-slate-300 space-y-2 min-h-[220px] max-h-[300px] overflow-y-auto" id="termOutput">
+        <p class="text-slate-500">// Click one of the buttons above or type a command below...</p>
+        <p><span class="text-cyan-400">user@mac ~ %</span> <span class="text-white">tab-ctl status</span></p>
+        <p class="text-slate-400">☀️ Sunshine Service: <span class="text-emerald-400">RUNNING</span></p>
+        <p class="text-slate-400">🖥️  DeskPad Canvas:   <span class="text-emerald-400">ACTIVE (1440x900 HiDPI)</span></p>
+        <p class="text-slate-400">📱 Android Tablet:   <span class="text-cyan-400">CONNECTED via USB (120 FPS HEVC)</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Step-by-Step Installation Section -->
+  <section id="install" class="py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-xs font-bold text-cyan-400 uppercase tracking-widest mb-3">Ready in Under 2 Minutes</h2>
+      <p class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Installation & Quickstart</p>
+    </div>
+
+    <div class="space-y-6 text-left">
+      <!-- Step 1 -->
+      <div class="p-6 sm:p-8 rounded-3xl bg-[#0c0c14] border border-white/10 flex gap-6 items-start">
+        <div class="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 flex items-center justify-center font-bold text-base shrink-0">1</div>
+        <div class="space-y-2">
+          <h3 class="text-lg font-bold text-white">Enable USB Debugging on Android Tablet</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Go to <strong>Settings $\rightarrow$ Developer Options $\rightarrow$ USB Debugging</strong> and turn it ON. Plug your tablet into your Mac with a USB-C cable and tap <em>"Always allow from this computer"</em>.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="p-6 sm:p-8 rounded-3xl bg-[#0c0c14] border border-white/10 flex gap-6 items-start">
+        <div class="w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 flex items-center justify-center font-bold text-base shrink-0">2</div>
+        <div class="space-y-2 flex-1">
+          <h3 class="text-lg font-bold text-white">Run the One-Line Automated Installer</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-3">
+            Open Terminal on your Mac and run the installation script:
+          </p>
+          <div class="p-3.5 rounded-xl bg-[#07070c] border border-white/5 font-mono text-xs text-cyan-300 flex items-center justify-between">
+            <code>git clone https://github.com/abhay2008/AndroiDisplay.git && cd AndroiDisplay && ./install.sh</code>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="p-6 sm:p-8 rounded-3xl bg-[#0c0c14] border border-white/10 flex gap-6 items-start">
+        <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center justify-center font-bold text-base shrink-0">3</div>
+        <div class="space-y-2">
+          <h3 class="text-lg font-bold text-white">Pair Moonlight & Enjoy 120 FPS</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Open Moonlight on your tablet, tap <strong>127.0.0.1</strong>, enter the 4-digit PIN in your Mac browser at <code class="text-xs font-mono text-cyan-300">https://localhost:47990</code>, and launch the stream!
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-xs font-bold text-cyan-400 uppercase tracking-widest mb-3">Got Questions?</h2>
+      <p class="text-3xl font-extrabold text-white tracking-tight">Frequently Asked Questions</p>
+    </div>
+
+    <div class="space-y-4 text-left" id="faqAccordion">
+      <!-- FAQ 1 -->
+      <div class="faq-item rounded-2xl bg-[#0c0c14] border border-white/10 overflow-hidden">
+        <button class="faq-btn w-full p-6 text-left flex items-center justify-between font-semibold text-white text-base">
+          <span>Why is this 100% free with no subscriptions?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 faq-icon transition-transform duration-300"></i>
+        </button>
+        <div class="faq-content px-6 pb-6 text-sm text-slate-400 hidden">
+          AndroiDisplay connects existing best-in-class open source tools (Sunshine, Moonlight, DeskPad, displayplacer, ADB) into a native macOS Menu Bar app and unified CLI suite. There are no cloud servers or proprietary paywalls.
+        </div>
+      </div>
+
+      <!-- FAQ 2 -->
+      <div class="faq-item rounded-2xl bg-[#0c0c14] border border-white/10 overflow-hidden">
+        <button class="faq-btn w-full p-6 text-left flex items-center justify-between font-semibold text-white text-base">
+          <span>Can I use Wi-Fi instead of a USB-C cable?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 faq-icon transition-transform duration-300"></i>
+        </button>
+        <div class="faq-content px-6 pb-6 text-sm text-slate-400 hidden">
+          Yes! On 5GHz or Wi-Fi 6 networks, latency is typically around 11–16ms. To use wirelessly, connect Moonlight to your Mac's local Wi-Fi IP address instead of 127.0.0.1.
+        </div>
+      </div>
+
+      <!-- FAQ 3 -->
+      <div class="faq-item rounded-2xl bg-[#0c0c14] border border-white/10 overflow-hidden">
+        <button class="faq-btn w-full p-6 text-left flex items-center justify-between font-semibold text-white text-base">
+          <span>Which Macs and Android devices are supported?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 faq-icon transition-transform duration-300"></i>
+        </button>
+        <div class="faq-content px-6 pb-6 text-sm text-slate-400 hidden">
+          Any Apple Silicon Mac (M1, M2, M3, M4) running macOS 13 (Ventura) or later, and any Android tablet or smartphone running Android 9.0+. 120Hz AMOLED panels (Samsung Galaxy Tab S-Series, Xiaomi Pad, OnePlus Pad) yield optimal results.
+        </div>
+      </div>
+
+      <!-- FAQ 4 -->
+      <div class="faq-item rounded-2xl bg-[#0c0c14] border border-white/10 overflow-hidden">
+        <button class="faq-btn w-full p-6 text-left flex items-center justify-between font-semibold text-white text-base">
+          <span>Why do blacks look so deep compared to other apps?</span>
+          <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 faq-icon transition-transform duration-300"></i>
+        </button>
+        <div class="faq-content px-6 pb-6 text-sm text-slate-400 hidden">
+          Other apps use limited Rec. 601 color ranges (16–235) which elevates dark shadows to dark grey. AndroiDisplay forces Full Range JPEG (0–255), Rec. 709, and 10-bit HEVC, allowing OLED pixels displaying `#000000` to completely shut off.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Footer Banner -->
+  <section class="py-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="p-10 sm:p-14 rounded-3xl bg-gradient-to-tr from-cyan-500/20 via-indigo-500/20 to-purple-500/20 border border-white/15 backdrop-blur-2xl shadow-2xl relative overflow-hidden">
+      <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
+        Upgrade Your Mac Workspace Today
+      </h2>
+      <p class="text-slate-300 text-base sm:text-lg max-w-xl mx-auto mb-8">
+        Experience single-digit millisecond latency, locked 120 FPS, and true OLED dynamic range completely for free.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="#install" class="px-8 py-4 rounded-xl font-bold text-sm bg-white text-black hover:bg-slate-200 shadow-xl transition-all duration-300 hover:scale-105 active:scale-95">
+          Install Now (Free)
+        </a>
+        <a href="https://github.com/abhay2008/AndroiDisplay" target="_blank" class="flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-sm bg-white/10 hover:bg-white/20 text-white border border-white/20 transition-all duration-300 hover:scale-105">
+          <i data-lucide="github" class="w-4 h-4"></i>
+          <span>Star on GitHub</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/5 py-12 text-center text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <div class="w-6 h-6 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold">A</div>
+        <span class="text-slate-400 font-semibold">AndroiDisplay for Mac</span>
+        <span>• MIT Licensed</span>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="https://github.com/abhay2008/AndroiDisplay/blob/main/docs/USAGE_GUIDE.md" target="_blank" class="hover:text-cyan-400 transition-colors">User Guide</a>
+        <a href="https://github.com/abhay2008/AndroiDisplay/blob/main/docs/ARCHITECTURE.md" target="_blank" class="hover:text-cyan-400 transition-colors">Architecture</a>
+        <a href="https://github.com/abhay2008/AndroiDisplay/blob/main/docs/TROUBLESHOOTING.md" target="_blank" class="hover:text-cyan-400 transition-colors">Troubleshooting</a>
+        <a href="https://github.com/abhay2008/AndroiDisplay" target="_blank" class="hover:text-cyan-400 transition-colors">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
