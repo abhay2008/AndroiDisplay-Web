@@ -97,5 +97,6 @@ npx vercel --prod
 ## 👨‍💻 Author
 
 **Abhay Kashyap**
+- Undergraduate in Electronics & Communication Engineering (ECE), B.M.S. College of Engineering (BMSCE)
 - GitHub: [@abhay2008](https://github.com/abhay2008)
 - Parent Project: [AndroiDisplay](https://github.com/abhay2008/AndroiDisplay)
